@@ -1,0 +1,66 @@
+<%# # signup form for employee # check if companies are registed or not # if not we force to create company %>
+
+    <main>
+
+        <% if(locals.company) { %>
+
+        <div id="warnings-by-server">
+
+        </div>
+
+            <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-8 col-xl-6">
+                  <div class="card rounded-3">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+            <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration</h3>
+
+                <p class="card-text">
+                <form class="px-md-2" id="create_employee_form"> 
+                    <div class=" mb-4">
+                        <select class="form-select select" name="company">
+                            <% for(let com of company) { %>
+                                <option value="<%= com.name %>"> <%= com.name %> </option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-outline mb-4">
+                    <input type="text" class="form-control mb-3" name="name" placeholder="name" required>
+                    </div>
+                    <div class="form-outline mb-4">
+                    <input type="email" class="form-control mb-3" name="email" placeholder="email" required>
+                    </div>
+                    <div class="form-outline mb-4">
+                    <input type="password" class="form-control mb-3" name="password" placeholder="password" required>
+                    </div>
+                    <input type="password" class="form-control mb-3" name="cpassword" placeholder="Confirm password"
+                        required>
+    
+                    <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
+                </form>
+                </p>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
+
+
+        <script src="/js/create_employee.js"></script>
+
+
+    <%} else { %>
+
+        <div class="alert alert-danger" role="alert">
+            At the movement there is no company registered with us <br>
+            creating employee without company is useless <br >
+            <a href="/create-company" class="btn btn-primary my-3">Create Company</a>
+        </div>
+
+    <%}%>
+</main>

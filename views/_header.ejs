@@ -1,0 +1,80 @@
+<%# header which holds the name of (website) if user is not logged in show links
+of signup, signin and create company if user is logged in show signout link if
+admin=true or employee=true we show admin panel and employee view links
+respectively %>
+
+<header id="main-header">
+  <nav
+    class="navbar navbar-expand-lg navbar-scroll shadow-0"
+    style="background-color: #b8babb30"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Employee Review System</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if(!locals.user) { %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item me-3">
+            <a class="nav-link d-flex align-items-center" href="/create-company"
+              >Create Company</a
+            >
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item me-3">
+            <a class="nav-link d-flex align-items-center" href="/signin"
+              >Sign In</a
+            >
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link d-flex align-items-center" href="/signup"
+              >Sign Up</a
+            >
+          </li>
+        </ul>
+        <% } else { %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <%if(locals.admin) {%>
+          <li class="nav-item me-3">
+            <a
+              class="nav-link d-flex align-items-center btn btn-primary"
+              href="/user/admin"
+              >Admin Panel</a
+            >
+          </li>
+          <% } %> <%if(locals.employee) {%>
+          <li class="nav-item me-3">
+            <a
+              class="nav-link d-flex align-items-center btn btn-primary"
+              href="/user/employee"
+              >Employee View</a
+            >
+          </li>
+
+          <% } %>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item me-3">
+            <a
+              class="nav-link d-flex align-items-center btn btn-primary"
+              href="/signout"
+              >Sign Out</a
+            >
+          </li>
+        </ul>
+
+        <%}%>
+      </div>
+    </div>
+  </nav>
+</header>
